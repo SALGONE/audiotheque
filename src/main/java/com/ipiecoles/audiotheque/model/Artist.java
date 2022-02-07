@@ -12,11 +12,12 @@ public class Artist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
 
     private String name;
 
-    @OneToMany(mappedBy = "artist")
+    @OneToMany(mappedBy = "artist", cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties("artist")
     private Set<Album> albums = new HashSet<>();
 
